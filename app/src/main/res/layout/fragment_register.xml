@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvAppName"
+                style="@style/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:drawablePadding="6dp"
+                android:text="@string/app_name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_shape"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvLetsRegister"
+                style="@style/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/goRegister"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="@id/tvAppName"
+                app:layout_constraintStart_toStartOf="@id/tvAppName"
+                app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+
+            <TextView
+                android:id="@+id/tvDoYouHaveAccount"
+                style="@style/TextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/haveAcount"
+                android:textAlignment="center"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/tvLetsRegister"
+                app:layout_constraintStart_toStartOf="@id/tvLetsRegister"
+                app:layout_constraintTop_toBottomOf="@id/tvLetsRegister" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/guidelineRegisterRight"
+                app:layout_constraintStart_toStartOf="@id/guidelineRegisterLeft"
+                app:layout_constraintTop_toBottomOf="@id/tvDoYouHaveAccount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edNameRegister"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittextHeight"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:drawableLeft="@drawable/ic_name"
+                    android:hint="@string/name"
+                    android:inputType="text"
+                    android:paddingStart="20dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutEmailRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/guidelineRegisterRight"
+                app:layout_constraintStart_toStartOf="@id/guidelineRegisterLeft"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edEmailRegister"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittextHeight"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:drawableLeft="@drawable/ic_profile"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="20dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutPasswordRegister"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:hintEnabled="true"
+                app:layout_constraintEnd_toEndOf="@id/guidelineRegisterRight"
+                app:layout_constraintStart_toStartOf="@id/guidelineRegisterLeft"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutEmailRegister">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPasswordRegister"
+                    style="@style/EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/edittextHeight"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:drawableLeft="@drawable/ic_lock"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingStart="20dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/buttonRegisterRegister"
+                style="@style/blueButtonStyleDiffuminado"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/mediumButtonHeight"
+                android:layout_marginTop="30dp"
+                android:text="@string/register"
+                app:layout_constraintEnd_toEndOf="@id/guidelineRegisterRight"
+                app:layout_constraintStart_toStartOf="@id/guidelineRegisterLeft"
+                app:layout_constraintTop_toBottomOf="@id/textInputLayoutPasswordRegister"
+                app:spinning_bar_color="@color/white" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRegisterLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.09" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineRegisterRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.91" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Style Button green difuninado-->
+    <style name="blueButtonStyleDiffuminado">
+        <item name="android:background">@drawable/blue_background</item>
+        <item name="android:fontFamily">@font/poppins_thin</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/h2TextSize</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!--Style Button Green-->
+    <style name="blueButtonStyle">
+        <item name="android:background">@drawable/blue_button</item>
+        <item name="android:fontFamily">@font/poppins_thin</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/h2TextSize</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
+
+    <!--Dimen for styles-->
+    <dimen name="h4TextSize">35sp</dimen>
+    <dimen name="h2TextSize">17sp</dimen>
+    <dimen name="h3TextSize">22sp</dimen>
+
+    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="tabLayout_text" parent="TextAppearance.AppCompat">
+        <item name="color">@color/black</item>
+        <item name="fontFamily">@font/sf_pro_display</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="MediumTextViewThin">
+        <item name="android:textColor">#4b4f60</item>
+        <item name="android:textSize">15sp</item>
+        <item name="fontFamily">@font/sf_pro_display</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="BigTextViewThin">
+        <item name="android:textColor">#4b4f60</item>
+        <item name="android:textSize">20sp</item>
+        <item name="fontFamily">@font/poppins_thin</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme" />
+
+</resources>
