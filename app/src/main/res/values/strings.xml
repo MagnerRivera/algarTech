@@ -24,4 +24,16 @@
     <string name="logout">Salir</string>
     <string name="address">Digite su dirección</string>
     <string name="document">Digite el numero de documento</string>
+    <string name="search_city">Buscar ciudades</string>
+    <string name="temp">Tempradtura</string>
+    <string name="descript">Descripción</string>
+    <string name="fast">Velocidad</string>
+    <string name="humidity">Humedad</string>
+    <string name="temperature_format">Grados: %d °</string>
+    <string name="weather_description_format">Estado: %s</string>
+    <string name="wind_speed_format">Velocidad del viento: %.2f</string>
+    <string name="humidity_format">Humedad: %d%%</string>
+    <string name="enter_valid_city">Ingresa una ciudad válida</string>
+    <string name="no_internet_connection">No tiene conexión a Internet, no se puede saber el clima</string>
+    <string name="error_service_consumption">Error al consumir el servicio</string>
 </resources>
