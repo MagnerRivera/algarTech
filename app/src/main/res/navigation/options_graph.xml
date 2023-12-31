@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shopping_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.algartech.fragments.options.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_climateOnlineFragment"
+            app:destination="@id/climateOnlineFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_climateOfflineFragment"
+            app:destination="@id/climateOfflineFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.algartech.fragments.options.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/climateOnlineFragment"
+        android:name="com.example.algartech.fragments.options.ClimateOnlineFragment"
+        android:label="ClimateOnlineFragment"
+        tools:layout="@layout/fragment_climate_online" />
+
+    <fragment
+        android:id="@+id/climateOfflineFragment"
+        android:name="com.example.algartech.fragments.options.ClimateOfflineFragment"
+        android:label="ClimateOfflineFragment"
+        tools:layout="@layout/fragment_climate_offline">
+        <action
+            android:id="@+id/action_climateOfflineFragment_to_climateCharacteristicsFragment"
+            app:destination="@id/climateCharacteristicsFragment"
+            app:popUpTo="@+id/climateOfflineFragment"
+            app:popUpToInclusive="true">
+            <argument
+                android:name="latitude"
+                app:argType="float" />
+            <argument
+                android:name="longitude"
+                app:argType="float" />
+            <argument
+                android:name="cityName"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/climateCharacteristicsFragment"
+        android:name="com.example.algartech.fragments.options.ClimateCharacteristicsFragment"
+        android:label="ClimateCharacteristicsFragment"
+        tools:layout="@layout/fragment_climate_characteristics" />
+</navigation>
