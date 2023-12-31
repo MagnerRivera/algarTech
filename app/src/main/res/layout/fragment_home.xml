@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,47 +8,44 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/searchLayout"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarTransaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@id/leftGuideLine"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_search" />
 
-            <EditText
-                android:id="@+id/editTextSearch"
-                style="@style/EditText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:hint="@string/search_city"
-                android:inputType="text"
-                android:visibility="invisible" />
-        </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-            android:id="@+id/buttonSearchCard"
-            style="@style/blueButtonStyleDiffuminado"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/mediumButtonHeight"
-            android:layout_marginTop="30dp"
-            android:text="@string/search_city"
-            app:layout_constraintEnd_toStartOf="@+id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@+id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/searchLayout"
-            app:spinning_bar_color="@color/white" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    style="@style/ImageChange"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/TextColor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/state"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.Toolbar>
 
 
         <LinearLayout
@@ -60,129 +56,78 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomGuideLine"
             app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/temp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarTransaction"
             app:layout_constraintVertical_bias="0.200">
 
-
             <androidx.cardview.widget.CardView
-                android:id="@+id/cwMap"
+                android:id="@+id/cvSearch"
                 style="@style/CardViewStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_weight="1">
 
-                <fragment
-                    android:id="@+id/mapFragment"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="350dp"
-                    android:layout_height="300dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_map_online" />
+
+                    <TextView
+                        style="@style/TextColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/search_cities"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSearchAdd"
+                style="@style/CardViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_search_map" />
+
+                    <TextView
+                        style="@style/TextColor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/cities_add"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/temp"
-            android:layout_width="380dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="40dp"
-            android:visibility="gone"
-            app:cardCornerRadius="15dp"
-            app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
-            app:layout_constraintStart_toStartOf="@id/leftGuideLine"
-            app:layout_constraintTop_toBottomOf="@+id/buttonSearchCard">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="380dp"
-                android:layout_height="250dp"
-                android:background="@drawable/light"
-                app:layout_constraintBottom_toTopOf="@+id/bottomGuideLine"
-                app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
-                app:layout_constraintStart_toStartOf="@id/leftGuideLine"
-                app:layout_constraintTop_toBottomOf="@+id/buttonSearchCard"
-                app:layout_constraintVertical_bias="0.1">
-
-                <ImageView
-                    android:id="@+id/imageTemp"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/broken_clouds_d"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvTemp"
-                    style="@style/TextColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/poppins_thin"
-                    android:gravity="center"
-                    android:text="@string/temp"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageTemp"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvDescript"
-                    style="@style/TextColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/poppins_thin"
-                    android:gravity="center"
-                    android:text="@string/descript"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageTemp"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTemp" />
-
-                <TextView
-                    android:id="@+id/tvFast"
-                    style="@style/TextColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:fontFamily="@font/poppins_thin"
-                    android:gravity="center"
-                    android:text="@string/fast"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.06"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageTemp" />
-
-                <TextView
-                    android:id="@+id/tvHumidity"
-                    style="@style/TextColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/poppins_thin"
-                    android:gravity="center"
-                    android:text="@string/humidity"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.06"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvFast" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/rightGuideLine"

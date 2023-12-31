@@ -11,3 +11,16 @@ data class User(
     val username: String,
     val email: String,
 )
+
+@Entity(tableName = "climate_data")
+data class ClimateEntity(
+    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    val name: String,
+    val lat: Double,
+    val lon: Double,
+    val temperature: Int,
+    val description: String,
+    val windSpeed: Double,
+    val humidity: Int,
+    val icon: String
+)

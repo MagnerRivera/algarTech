@@ -17,9 +17,9 @@
     <string name="number_version">version 1.0</string>
     <string name="welcome">¡Bienvenido!</string>
     <string name="regional">Regional</string>
-    <string name="state">Gestionar tarjeta</string>
-    <string name="registerEmpleado">Registrar la tarjeta</string>
-    <string name="add">Agregar tarjeta</string>
+    <string name="state">Gestionar ciudad</string>
+    <string name="search_cities">Buscar ciudades</string>
+    <string name="add">Agregar la ciudad</string>
     <string name="settings">Ajustes</string>
     <string name="logout">Salir</string>
     <string name="address">Digite su dirección</string>
@@ -34,6 +34,14 @@
     <string name="wind_speed_format">Velocidad del viento: %.2f</string>
     <string name="humidity_format">Humedad: %d%%</string>
     <string name="enter_valid_city">Ingresa una ciudad válida</string>
-    <string name="no_internet_connection">No tiene conexión a Internet, no se puede saber el clima</string>
+    <string name="no_internet_connection">No tienes conexión a Internet</string>
+    <string name="go_to_saved_maps">Por favor diríjase a los mapas guardados</string>
     <string name="error_service_consumption">Error al consumir el servicio</string>
+    <string name="clima_online">Clima en linea</string>
+    <string name="cities_add">Buscar ciudad guardada</string>
+    <string name="name_city">Nombre de la ciudad</string>
+    <string name="add_cities">Ciudades guardadas</string>
+    <string name="search_add_cities">Buscar ciudades guardadas</string>
+    <string name="empty_cities">No hay ciudades guardadas</string>
+    <string name="map_city">Mapa de la ciudad</string>
 </resources>

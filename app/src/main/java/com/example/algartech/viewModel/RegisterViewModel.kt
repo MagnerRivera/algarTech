@@ -8,13 +8,14 @@ import com.example.algartech.room.User
 import com.example.algartech.room.UserDao
 import com.example.algartech.utils.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,9 +24,11 @@ class RegisterViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _register = MutableStateFlow<Resource<User>>(Resource.Unspecified())
+
     val register: Flow<Resource<User>> = _register
 
     private val _validation = Channel<RegisterFieldsState>()
+
     val validation = _validation.receiveAsFlow()
 
     private var applicationContext: Context? = null
@@ -36,30 +39,37 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    suspend fun createAccountWithEmailAndPassword(user: User, password: String) {
-        if (checkValidation(user, password)) {
-            _register.value = Resource.Loading()
+    fun createAccountWithEmailAndPassword(
+        user: User,
+        password: String,
+        ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+    ) {
+        viewModelScope.launch {
+            if (checkValidation(user, password)) {
+                _register.value = Resource.Loading()
 
-            val newUser = User(
-                password = password,
-                username = user.username,
-                email = user.email
-            )
+                val newUser = User(
+                    password = password,
+                    username = user.username,
+                    email = user.email
+                )
 
-            viewModelScope.launch(Dispatchers.IO) {
-                userDao.insert(newUser) // Run the insert operation on the IO thread
+                withContext(ioDispatcher) {
+                    userDao.insert(newUser) // Run the insert operation on the provided dispatcher
+                }
+
                 _register.value = Resource.Success(newUser)
                 showToast("Registro exitoso")
-            }
-        } else {
-            val registerFieldsState = RegisterFieldsState(
-                validateEmail(user.email), validatePassword(password), validateName(user.username)
-            )
-            runBlocking {
+            } else {
+                val registerFieldsState = RegisterFieldsState(
+                    validateEmail(user.email),
+                    validatePassword(password),
+                    validateName(user.username)
+                )
                 _validation.send(registerFieldsState)
+                _register.value = Resource.Error("Validation failed")
+                showToast("Error en el registro")
             }
-            _register.value = Resource.Error("Validation failed")
-            showToast("Error en el registro")
         }
     }
 
@@ -68,9 +78,7 @@ class RegisterViewModel @Inject constructor(
         val emailValidation = validateEmail(user.email)
         val passwordValidation = validatePassword(password)
         val nameValidation = validateName(user.username)
-        val shouldRegister =
-            emailValidation is RegisterValidation.Success && passwordValidation is RegisterValidation.Success && nameValidation is RegisterValidation.Success
 
-        return shouldRegister
+        return emailValidation is RegisterValidation.Success && passwordValidation is RegisterValidation.Success && nameValidation is RegisterValidation.Success
     }
 }

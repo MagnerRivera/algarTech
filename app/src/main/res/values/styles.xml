@@ -22,8 +22,6 @@
     </style>
 
 
-
-
     <!--Dimen for styles-->
     <dimen name="h4TextSize">35sp</dimen>
     <dimen name="h2TextSize">17sp</dimen>

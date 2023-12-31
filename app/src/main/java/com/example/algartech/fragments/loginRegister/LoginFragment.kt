@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.algartech.R
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.navigation.fragment.findNavController
@@ -16,6 +18,7 @@ import com.example.algartech.activities.OptionsActivity
 import com.example.algartech.databinding.FragmentLoginBinding
 import com.example.algartech.utils.Resource
 import com.example.algartech.viewModel.LoginViewModel
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -50,36 +53,37 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
 
-        // Observo el estado del inicio de sesión y toma medidas en consecuencia ya sea exitoso o fallido segun credenciales
-        lifecycleScope.launchWhenStarted {
-            viewModel.login.collect {
-                when (it) {
-                    is Resource.Loading -> {
-                        binding.buttonLoginLogin.startAnimation()
-                    }
-
-                    is Resource.Success -> {
-                        binding.buttonLoginLogin.revertAnimation()
-                        // Inicio la actividad de home que contiene las opciones de Registrar o Gestionar la tarjeta si el inicio de sesión es exitoso
-                        Intent(requireActivity(), OptionsActivity::class.java).also { intent ->
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(intent)
-                            Toast.makeText(
-                                requireContext(),
-                                "Inicio de sesión exitoso",
-                                Toast.LENGTH_SHORT
-                            ).show()
+        //Corrutina para observar el estado del inicio de sesión y toma medidas en consecuencia ya sea exitoso o fallido segun credenciales
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.login.collect {
+                    when (it) {
+                        is Resource.Loading -> {
+                            binding.buttonLoginLogin.startAnimation()
                         }
+
+                        is Resource.Success -> {
+                            binding.buttonLoginLogin.revertAnimation()
+                            // Inicio la actividad de home que contiene las opciones de Registrar o Gestionar la tarjeta si el inicio de sesión es exitoso
+                            Intent(requireActivity(), OptionsActivity::class.java).also { intent ->
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                                startActivity(intent)
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Inicio de sesión exitoso",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+
+                        is Resource.Error -> {
+                            // Muestro un mensaje de error en caso de error durante el inicio de sesión
+                            Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
+                            binding.buttonLoginLogin.revertAnimation()
+                        }
+
+                        else -> Unit
                     }
-
-                    is Resource.Error -> {
-                        // Muestro un mensaje de error en caso de error durante el inicio de sesión
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
-                        binding.buttonLoginLogin.revertAnimation()
-                    }
-
-                    else -> Unit
-
                 }
             }
         }
